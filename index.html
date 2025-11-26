@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电商管理系统</title>
+  <!-- 使用构建工具时：在JS中import CSS
+   传统静态项目：在HTML中link CSS -->
+  <!-- <link rel="stylesheet" href="/admin.css"> -->
+</head>
+
+<body>
+  <div id="app"></div>
+  <!--  传统脚本 -->
+  <!-- <script src="main.js"></script> -->
+
+  <!--  模块化脚本 -->
+  <!-- main.js 中可以使用 import/export
+   模块中的变量不会污染全局作用域
+   延迟执行 & 按需加载
+   模块脚本自动启用严格模式 -->
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

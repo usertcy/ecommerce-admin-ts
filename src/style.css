@@ -1,0 +1,609 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+aside.sidebar {
+  width: 230px;
+  background-color: #1f3e73;
+  color: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  /* 定义侧边栏的堆叠层级为 100（z-index 数值越大，元素在层叠顺序中越靠上）
+    确保侧边栏在页面滚动或与其他元素重叠时，不会被其他内容遮挡（尤其适合固定定位的侧边栏。 */
+  z-index: 100;
+}
+
+aside .sidebar-header {
+  padding: 20px;
+  text-align: center;
+  /* 宽度 样式 颜色 */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+aside .sidebar-header h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+nav.sidebar-menu {
+  padding: 15px 0;
+}
+
+nav .menu-item {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+
+}
+
+nav .menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+nav .menu-item.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav .menu-item i {
+  margin-right: 0;
+  font-size: 1.5rem;
+}
+
+
+main.main-content {
+  flex: 1;
+  display: flex;
+  /* 定义弹性容器内子元素的排列方向为垂直方向 */
+  flex-direction: column;
+}
+
+main .header {
+  background-color: white;
+  padding: 15px 30px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  display: flex;
+  /* 在弹性布局中，弹性项两端对齐，中间间距相等 */
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .header h2 {
+  /* size大小 weight粗细 */
+  font-weight: 500;
+  color: #171616
+}
+
+section.user-info {
+  display: flex;
+  align-items: center;
+}
+
+figure.user-avator {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #3498db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+section.content {
+  padding: 30px;
+  flex: 1;
+  /* 用于控制元素在垂直方向上的内容溢出行为
+    当元素内的内容在垂直方向上超出元素自身的高度时，浏览器会自动显示滚动条 */
+  overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+/* 数据概览部分 */
+.stats-container {
+  display: grid;
+  /* 定义列布局的核心属性，作用是让容器内的列根据容器宽度自动适应排列
+    repeat(count, size)：重复生成指定数量和尺寸的列  auto-fill：自动计算能容纳多少列
+    minmax(a, b)：表示列宽最小为 a，最大为 b */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  /* gap（Grid/Flex 专用） 子元素与容器边缘无间隙*/
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.stat-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.stat-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+  margin-right: 15px;
+}
+
+.stat-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.stat-info p {
+  color: #6c757d
+}
+
+article.card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow: hidden;
+}
+
+article .card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+article .card-header h3 {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+article .card-body {
+  padding: 20px;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* <th> 定义表格中的标题单元格 */
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+table th {
+  background-color: #f8f9fa;
+  font-weight: 500;
+  color: #495057;
+}
+
+table tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* 按钮样式 */
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+button.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+
+
+
+
+
+
+
+
+
+button.btn-success {
+  background-color: #2ecc71;
+  color: white;
+}
+
+button.btn-warning {
+  background-color: #f39c12;
+  color: white;
+}
+
+button.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #3498db;
+  /* 移除元素在获取焦点（focus）时默认显示的轮廓线。 */
+  outline: none;
+  /*  水平 垂直 模糊半径 扩展半径 */
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+
+
+
+
+
+
+
+
+/* 订单管理 */
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-shipped {
+  background-color: #cce7ff;
+  color: #004085;
+}
+
+.status-delivered {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-cancelled {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+
+.filter-section {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.filter-row {
+  display: flex;
+  gap: 15px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+
+
+
+
+
+
+
+
+/* 用户管理 */
+.role-badge {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.role-admin {
+  background-color: #dc3545;
+  color: white;
+}
+
+.role-user {
+  background-color: #28a745;
+  color: white;
+}
+
+.role-vip {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+/* 订单详情模态框 */
+.order-details {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.order-items {
+  margin: 15px 0;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.order-item:last-child {
+  border-bottom: none;
+}
+
+.order-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #eee;
+}
+
+/* 用户信息卡片 */
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.user-avatar-large {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.user-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.user-stat-item {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.user-stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.user-stat-label {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* ==================== 第四周新增样式 ==================== */
+
+/* 图表容器 */
+.chart-container {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chart-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.chart-placeholder {
+  height: 300px;
+  background: linear-gradient(45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(-45deg, #f8f9fa 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #f8f9fa 75%),
+    linear-gradient(-45deg, transparent 75%, #f8f9fa 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+}
+
+/* 设置页面 */
+.settings-section {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-label h4 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.settings-label p {
+  margin: 5px 0 0 0;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+/* 开关按钮 */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+@media (max-width: 768px) {
+  .filter-row {
+    flex-direction: column;
+  }
+
+  .filter-group {
+    min-width: 100%;
+  }
+
+  .user-profile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .settings-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
